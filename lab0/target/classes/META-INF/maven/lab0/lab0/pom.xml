@@ -5,21 +5,32 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>lab0project</name>
   <description>the spring application prontd a greeting message to the console</description>
+  
+  <properties>
+  <springcontext.version>5.0.8.RELEASE</springcontext.version>
+  <junit.version>4.12</junit.version>
+  <maven.version>3.7.0</maven.version>
+  </properties>
+  
   <dependencies>
 <dependency>
     <groupId>org.springframework</groupId>
     <artifactId>spring-context</artifactId>
-    <version>5.0.8.RELEASE</version>
+    <version>${springcontext.version}</version>
 </dependency>
-  
-  
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>${junit.version}</version>
+    <scope>test</scope>
+</dependency>
   </dependencies>
   
   <build>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
+        <version>${maven.version}</version>
         <configuration>
           <release>10</release>
         </configuration>
