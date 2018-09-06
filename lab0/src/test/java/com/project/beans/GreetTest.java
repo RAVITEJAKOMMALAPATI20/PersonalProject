@@ -1,14 +1,16 @@
 package com.project.beans;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 class GreetTest {
 
 	@Test
 	void testGetGreeting() {
-		fail("Not yet implemented");
+		try(ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationcontext.xml");){
+			Greet greet =(Greet) context.getBean("greet");
+			System.out.println(greet.getGreeting());
+		}
 	}
 
 }
