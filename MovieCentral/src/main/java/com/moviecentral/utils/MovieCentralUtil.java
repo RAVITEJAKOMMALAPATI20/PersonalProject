@@ -3,11 +3,17 @@
  */
 package com.moviecentral.utils;
 
+import java.util.Date;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * @author ravitejakommalapati
@@ -15,6 +21,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MovieCentralUtil {
+	private static final int EXPIRATION = 60 * 24;
 	private Pattern pattern;
 	private Matcher matcher;
 	private  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -43,5 +50,25 @@ public class MovieCentralUtil {
 		public String encodePassword(String password) {
 			return passwordEncoder.encode(password);
 		}
-
+		
+		public String getJSONFromObject(Object obj ) {
+			ObjectMapper mapper = new ObjectMapper();
+			String jsonInString =null;
+			
+			try {
+				jsonInString = mapper.writeValueAsString(obj);
+			} catch (JsonProcessingException e) {
+				return "Error in Converting to JSON String";
+			}
+			return jsonInString;
+		}
+		
+		
+		public Date calculateExpiryDate() {
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Timestamp(calendar.getTime().getTime()));
+			calendar.add(Calendar.MINUTE, EXPIRATION);
+			return new Date(calendar.getTime().getTime());
+			}
+		
 }

@@ -1,0 +1,15 @@
+
+create query for verification_token
+create table MovieCentral.verification_token(id int primary key not null,token varchar(255) not null, created_date datetime not null,expiry_date datetime not null,username varchar(32) not null,FOREIGN KEY (username) REFERENCES MovieCentral.users(username));
+
+Final Create table query
+
+CREATE TABLE MovieCentral.`verification_token` (
+  `id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `expiry_date` datetime NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `email` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`),
+FOREIGN KEY (username,email) REFERENCES MovieCentral.users(username,email)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

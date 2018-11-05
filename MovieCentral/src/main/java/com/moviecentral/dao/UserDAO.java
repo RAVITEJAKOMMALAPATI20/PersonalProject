@@ -37,6 +37,10 @@ public class UserDAO {
 		
 	}
 	
+	public void save(User user) {
+		
+		entityManager.merge(user);
+	}
 	
 
 }
