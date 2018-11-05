@@ -30,23 +30,23 @@ public class User implements Serializable{
 	
 	@Id
 	@Column(name="username")
-	private String userName;
+	private String username;
 	@Column(name="password")
 	private String password;
 	@Id
 	@Column(name="email")
 	private String email;
 	@Column(name="usertype")
-	private boolean userType;
+	private boolean usertype;
 	@Column(name="details")
 	@Convert(converter = JpaConverterJson.class)
 	private UserDetails details;
 	
 	public String getUserName() {
-		return userName;
+		return username;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String userName) {
+		this.username = userName;
 	}
 	public String getPassword() {
 		return password;
@@ -60,11 +60,11 @@ public class User implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public boolean isUserType() {
-		return userType;
+	public boolean isUsertype() {
+		return usertype;
 	}
 	public void setUserType(boolean userType) {
-		this.userType = userType;
+		this.usertype = userType;
 	}
 	public UserDetails getDetails() {
 		return details;
