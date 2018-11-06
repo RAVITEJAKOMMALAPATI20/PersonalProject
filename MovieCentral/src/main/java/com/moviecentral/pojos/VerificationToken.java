@@ -76,7 +76,7 @@ public class VerificationToken {
 		java.util.Date currentDate = calendar.getTime();
 		this.token = token;
 		this.user = user;
-		this.createdDate = new java.sql.Date(currentDate.getTime());
+		this.createdDate = new java.util.Date(currentDate.getTime());
 		this.expiryDate = this.calculateExpiryDate();
 	}
 

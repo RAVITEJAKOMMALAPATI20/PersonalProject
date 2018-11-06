@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ import com.moviecentral.utils.MovieCentralUtil;
  * @author ravitejakommalapati
  *
  */
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -78,6 +80,6 @@ public class UserController {
 		
 		user.setEnable(true);
 		userService.enableRegisteredUser(user);
-		return null;
+		return "You have been activated";
 	}
 }
