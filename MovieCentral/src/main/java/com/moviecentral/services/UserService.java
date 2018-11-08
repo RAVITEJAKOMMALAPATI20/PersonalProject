@@ -47,12 +47,11 @@ public class UserService {
 		
 		//Encoding the String password using BCryptPasswordEncoder
 		String encodedpassword = movieCentralUtil.encodePassword(user.getPassword());
-		
 		user.setPassword(encodedpassword);
 		user.setEnable(false);
 		
 		
-		//userDao.signinUserDao(user);
+		userDao.signinUserDao(user);
 		
 		return user;
 	}

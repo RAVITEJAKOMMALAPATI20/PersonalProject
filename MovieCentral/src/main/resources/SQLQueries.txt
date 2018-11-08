@@ -13,3 +13,42 @@ CREATE TABLE MovieCentral.`verification_token` (
   `email` varchar(32) NOT NULL,
   PRIMARY KEY (`id`),
 FOREIGN KEY (username,email) REFERENCES MovieCentral.users(username,email)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+Create table MovieCentral.payment(id BIGINT NOT NULL PRIMARY KEY,cardnumber varchar(50) not null,cvv varchar(8)
+not null,cardholder varchar (32) not null,expirymonth TINYINT not null,expiryyear TINYINT not null,username varchar(32),
+FOREIGN KEY (username) REFERENCES MovieCentral.users(username)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `users` (
+  `email` varchar(32) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `details` json DEFAULT NULL,
+  `usertype` tinyint(4) DEFAULT NULL,
+  `enable` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`username`,`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+CREATE TABLE `movies` (
+  `movieid` varchar(255) NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `releasedate` date DEFAULT NULL,
+  `studio` varchar(255) DEFAULT NULL,
+  `synopsis` text,
+  `image` varchar(255) DEFAULT NULL,
+  `movieurl` text,
+  `actors` json DEFAULT NULL,
+  `director` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `availability` varchar(255) DEFAULT NULL,
+  `genre` varchar(255) DEFAULT NULL,
+  `price` varchar(255) DEFAULT NULL,
+  `rating` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`movieid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+create table MovieCentral.usersubscriptions (
+subscriptionid varchar(255) primary key not null,startdate date not null,enddate date not null,
+subscriptionstatus boolean not null,username varchar(32),
+FOREIGN KEY (username) REFERENCES MovieCentral.users(username)) 
+ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
