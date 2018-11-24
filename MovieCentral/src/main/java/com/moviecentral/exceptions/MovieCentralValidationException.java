@@ -7,7 +7,7 @@ package com.moviecentral.exceptions;
  * @author ravitejakommalapati
  *
  */
-public class MovieCentralValidationException extends Exception{
+public class MovieCentralValidationException extends RuntimeException{
 
 	/**
 	 * 
@@ -20,5 +20,6 @@ public class MovieCentralValidationException extends Exception{
 
     public MovieCentralValidationException(String message){
         super(message);
+        
     }
 }

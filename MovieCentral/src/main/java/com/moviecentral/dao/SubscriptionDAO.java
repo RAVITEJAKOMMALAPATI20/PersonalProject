@@ -11,6 +11,8 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+
+import com.moviecentral.pojos.Payment;
 import com.moviecentral.pojos.UserSubscription;
 
 /**
@@ -27,26 +29,29 @@ public class SubscriptionDAO {
 	
 	
 	public UserSubscription saveSubscriptionDao(UserSubscription subscription) {
+	
 		entityManager.persist(subscription);
 		return subscription;
+		
 	}
 	
 	public UserSubscription updateSubscriptionDao(UserSubscription subscription) {
 
 		
-		entityManager.merge(subscription);
-		return subscription;
+		UserSubscription resUserSubscription=entityManager.merge(subscription);
+		return resUserSubscription;
 	}
 
-	public void deleteSubscriptionDao(UserSubscription subscription) {
-		entityManager.remove(subscription);
+	public UserSubscription deleteSubscriptionDao(UserSubscription subscription) {
+		UserSubscription resUserSubscription=entityManager.merge(subscription);
+		return resUserSubscription;
 	}
 	
 	public List<UserSubscription> getAllSubscriptionsDao(String username) {
 		Query query = entityManager.createNamedQuery("UserSubscription.getAllsubscriptions");
 		query.setParameter("username", username);
-		
-		return null;
+		List<UserSubscription> reslistUserSubscription = query.getResultList();
+		return reslistUserSubscription;
 	}
 
 }

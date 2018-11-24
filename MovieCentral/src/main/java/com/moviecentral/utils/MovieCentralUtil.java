@@ -45,8 +45,12 @@ public class MovieCentralUtil {
 			matcher = pattern.matcher(email);
 			return matcher.matches();
 
+			
 		}
 		
+		public boolean decodePassword(String inpassword,String dbpassword) {
+			return passwordEncoder.matches(inpassword, dbpassword); 
+		}
 		public String encodePassword(String password) {
 			return passwordEncoder.encode(password);
 		}
@@ -70,5 +74,12 @@ public class MovieCentralUtil {
 			calendar.add(Calendar.MINUTE, EXPIRATION);
 			return new Date(calendar.getTime().getTime());
 			}
+		
+		
+		public Date calculateSupsriptionEnddate(int duration) {
+			Calendar calendar = Calendar.getInstance(); 
+			calendar.add(Calendar.MONTH, duration);
+			return new Date(calendar.getTime().getTime());
+		}
 		
 }

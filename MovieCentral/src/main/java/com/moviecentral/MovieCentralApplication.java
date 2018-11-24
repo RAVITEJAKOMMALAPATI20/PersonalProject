@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 
+
 @SpringBootApplication
 public class MovieCentralApplication {
 	
@@ -12,4 +13,5 @@ public class MovieCentralApplication {
 		SpringApplication.run(MovieCentralApplication.class, args);
 		
 	}
+	
 }

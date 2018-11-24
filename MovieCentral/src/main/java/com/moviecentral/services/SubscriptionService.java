@@ -3,13 +3,17 @@
  */
 package com.moviecentral.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.moviecentral.dao.SubscriptionDAO;
+import com.moviecentral.exceptions.MovieCentralValidationException;
 import com.moviecentral.pojos.UserSubscription;
+import com.moviecentral.utils.MovieCentralUtil;
+import com.moviecentral.utils.MovieCentralValidationUtil;
 
 /**
  * @author ravitejakommalapati
@@ -21,19 +25,31 @@ public class SubscriptionService {
 	
 	@Autowired
 	private SubscriptionDAO subscriptionDAO;
+	@Autowired
+	MovieCentralUtil movieCentralUtil;
+	@Autowired
+	MovieCentralValidationUtil movieCentralValidationUtil;
 	
 	public UserSubscription saveSubscriptionService(UserSubscription subscription) {
-		subscriptionDAO.saveSubscriptionDao(subscription);
-		return subscription;
+		Date date=movieCentralUtil.calculateSupsriptionEnddate(subscription.getDuration());
+		subscription.setEnddate(date);
+		subscription.setSubscriptionstatus(true);
+		movieCentralValidationUtil.validateUserSubscription(subscription);
+		UserSubscription resUserSubscription=subscriptionDAO.saveSubscriptionDao(subscription);
+		return resUserSubscription;
+		
+		
 	}
 	
 	public UserSubscription updateSubscriptionService(UserSubscription subscription) {
-		subscriptionDAO.updateSubscriptionDao(subscription);
-		return subscription;
+		UserSubscription resUserSubscription= subscriptionDAO.updateSubscriptionDao(subscription);
+		return resUserSubscription;
 	}
 
-	public void deleteSubscriptionService(UserSubscription subscription) {
-		subscriptionDAO.deleteSubscriptionDao(subscription);
+	public UserSubscription deleteSubscriptionService(UserSubscription subscription) {
+		subscription.setDropsubscription(true);
+		UserSubscription resUserSubscription=subscriptionDAO.deleteSubscriptionDao(subscription);
+		return resUserSubscription;
 		
 	}
 	
@@ -41,5 +57,7 @@ public class SubscriptionService {
 		List<UserSubscription> userSubscriptionList=subscriptionDAO.getAllSubscriptionsDao(username);
 		return userSubscriptionList;
 	}
+	
+	
 
 }

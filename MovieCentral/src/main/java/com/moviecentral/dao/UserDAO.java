@@ -28,13 +28,28 @@ public class UserDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	public void signinUserDao(User user) throws MovieCentralRepositoryException {
+	public User signinUserDao(User user) {
 		try {
-		entityManager.persist(user);
-		}catch(DataIntegrityViolationException dataIntegrityViolationException) {
-			throw new MovieCentralRepositoryException("User name or password is not available");
-		}
+		 entityManager.persist(user);
+		entityManager.flush();
 		
+		}catch(Exception ex) {
+			throw new MovieCentralRepositoryException(ex.getMessage());
+		}
+		return user;
+	}
+	
+	public User loginUserDao(User user) {
+		System.out.println(user.getUsername());
+		User regestered =null;
+		try {
+			regestered=entityManager.find(User.class, user.getUsername());
+		    entityManager.flush();
+		
+		}catch(Exception ex) {
+			throw new MovieCentralRepositoryException(ex.getMessage());
+		}
+		return regestered;
 	}
 	
 	public void save(User user) {

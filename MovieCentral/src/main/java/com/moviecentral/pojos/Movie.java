@@ -3,17 +3,31 @@
  */
 package com.moviecentral.pojos;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+import org.springframework.stereotype.Component;
 /**
  * @author ravitejakommalapati
  *
  */
 @Entity
+@Component
 @Table(name="movies")
+@NamedQueries({
+	@NamedQuery(
+	name = "Movie.getAllMovies",
+	query = "select M from Movie M"
+	)
+})
 public class Movie {
 	@Id
 	@Column(name="movieid")
@@ -26,7 +40,7 @@ public class Movie {
 	private String releasedate;
 	@Column(name="studio")
 	private String studio;
-	@Column(name="synopsis")
+	@Column(name="synopsis" ,length=1000)
 	private String synopsis;
 	@Column(name="image")
 	private String image;
@@ -46,7 +60,16 @@ public class Movie {
 	private String price;
 	
 	
+	@Column(name="registereddate")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date registereddate;
 	
+	public Date getRegistereddate() {
+		return registereddate;
+	}
+	public void setRegistereddate(Date registereddate) {
+		this.registereddate = registereddate;
+	}
 	public String getMovieid() {
 		return movieid;
 	}
@@ -127,6 +150,7 @@ public class Movie {
 	}
 	public String getPrice() {
 		return price;
+		
 	}
 	public void setPrice(String price) {
 		this.price = price;

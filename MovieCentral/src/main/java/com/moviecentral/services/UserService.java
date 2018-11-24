@@ -33,17 +33,19 @@ public class UserService {
 	private MovieCentralMailingUtil movieCentralMailingUtil;
 	
 	
-	public User signinUserService(User user) throws MovieCentralRepositoryException, MovieCentralValidationException {
+	public User signinUserService(User user)  {
+		
+		
 		
 		//Null Checks for important data
-		if(user==null || user.getEmail() == null || user.getUserName() == null || user.getPassword() == null) {
+		if(user==null || user.getEmail() == null || user.getUsername() == null || user.getPassword() == null) {
 			throw new MovieCentralValidationException("The data you entered is invalid");
 		}
 		
-		if(!movieCentralUtil.validateEmail(user.getEmail())){
-			
-			throw new MovieCentralValidationException("The data you entered is invalid");
-		}
+		//if(!movieCentralUtil.validateEmail(user.getEmail())){
+		//	
+		//	throw new MovieCentralValidationException("The data you entered is invalid");
+		//}
 		
 		//Encoding the String password using BCryptPasswordEncoder
 		String encodedpassword = movieCentralUtil.encodePassword(user.getPassword());
@@ -51,11 +53,33 @@ public class UserService {
 		user.setEnable(false);
 		
 		
-		userDao.signinUserDao(user);
 		
-		return user;
+		User resuser =userDao.signinUserDao(user);
+		
+		return resuser;
 	}
 	
+public User loginUserService(User user)  {
+		
+		
+	System.out.println(user);
+	System.out.println(user.getUsername());
+	System.out.println(user.getPassword());
+		
+		//Null Checks for important data
+		if(user==null || user.getUsername() == null || user.getPassword() == null) {
+			throw new MovieCentralValidationException("The data you entered is invalid");
+		}
+		User regestered = userDao.loginUserDao(user);
+		System.out.println(regestered);
+		boolean encodedpassword = movieCentralUtil.decodePassword(user.getPassword(), regestered.getPassword());
+		
+		if(!encodedpassword) {
+			return regestered;
+		}
+		
+		return regestered;
+	}
 	public void createVerificationTokenService(User user, String token) throws MovieCentralRepositoryException {
 		VerificationToken newUserToken = new VerificationToken(token, user);
 		tokenDAO.createVerificationTokenDao(newUserToken);

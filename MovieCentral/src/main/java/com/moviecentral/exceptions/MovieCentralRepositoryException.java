@@ -7,7 +7,7 @@ package com.moviecentral.exceptions;
  * @author ravitejakommalapati
  *
  */
-public class MovieCentralRepositoryException extends Exception{
+public class MovieCentralRepositoryException extends RuntimeException{
 
 	/**
 	 * 
@@ -16,6 +16,7 @@ public class MovieCentralRepositoryException extends Exception{
 	
 	public MovieCentralRepositoryException(){
         super();
+        
     }
 
     public MovieCentralRepositoryException(String message){

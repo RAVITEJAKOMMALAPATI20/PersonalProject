@@ -29,6 +29,7 @@ public class MovieCentralMailingUtil {
     private JavaMailSender mailSender;
  
    public void confirmRegistration(String toEmailAddress) {
+	   
 	   String token = UUID.randomUUID().toString();
 	   String subject = "Movie Central Registration Confirmation";
 	   SimpleMailMessage email = new SimpleMailMessage(); 

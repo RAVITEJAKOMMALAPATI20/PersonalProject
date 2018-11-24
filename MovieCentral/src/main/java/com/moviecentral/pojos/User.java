@@ -6,12 +6,11 @@ package com.moviecentral.pojos;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-import javax.persistence.Convert;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.moviecentral.utils.JpaConverterJson;
 
 /**
  * @author ravitejakommalapati
@@ -19,7 +18,7 @@ import com.moviecentral.utils.JpaConverterJson;
  */
 
 @Entity
-@Table(name="users")
+@Table(name="people")
 public class User implements Serializable{
 	
 	/**
@@ -33,28 +32,28 @@ public class User implements Serializable{
 	private String username;
 	@Column(name="password")
 	private String password;
-	@Id
 	@Column(name="email")
 	private String email;
 	@Column(name="enable")
 	private boolean enable;
 	@Column(name="usertype")
 	private boolean usertype;
-	@Column(name="details")
-	@Convert(converter = JpaConverterJson.class)
-	private UserDetails details;
+	@Column(name="firstname")
+	private String firstname;
+	@Column(name="lastname")
+	private String lastname;
+	@Column(name="middlename")
+	private String middlename;
+	@Column(name="phonenumber")
+	private String phonenumber;
 	
-	public boolean isEnable() {
-		return enable;
-	}
-	public void setEnable(boolean enable) {
-		this.enable = enable;
-	}
-	public String getUserName() {
+	
+	
+	public String getUsername() {
 		return username;
 	}
-	public void setUsername(String userName) {
-		this.username = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -68,18 +67,47 @@ public class User implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public boolean isEnable() {
+		return enable;
+	}
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
 	public boolean isUsertype() {
 		return usertype;
 	}
-	public void setUserType(boolean userType) {
-		this.usertype = userType;
+	public void setUsertype(boolean usertype) {
+		this.usertype = usertype;
 	}
-	public UserDetails getDetails() {
-		return details;
+	public String getFirstname() {
+		return firstname;
 	}
-	public void setDetails(UserDetails details) {
-		this.details = details;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public String getMiddlename() {
+		return middlename;
+	}
+	public void setMiddlename(String middlename) {
+		this.middlename = middlename;
+	}
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 	
 
 }

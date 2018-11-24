@@ -57,7 +57,6 @@ public class VerificationToken {
 	
 	@OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "username", nullable = false)
-	@JoinColumn(name = "email", nullable = false)
 	private User user;
 	public VerificationToken() {
 		super();

@@ -3,16 +3,14 @@
  */
 package com.moviecentral.pojos;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,11 +23,15 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(
 	name = "Payment.getAllpaymentdetails",
-	query = "select P from Payment P where P.username = :username"
+	query = "select U from Payment U where U.username = :username"
 	)
 })
-public class Payment {
+public class Payment implements Serializable {
 
+/**
+	 * 
+	 */
+private static final long serialVersionUID = 1L;
 @Id
 @Column(name="id")
 @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,9 +46,9 @@ private String cardholder;
 private int expirymonth;
 @Column(name="expiryyear")
 private int expiryyear;
-@OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-@JoinColumn(name = "username", nullable = false)
-private User user;
+@Id
+@Column(name="username")
+private String username;
 public long getId() {
 	return id;
 }
@@ -83,12 +85,16 @@ public int getExpiryyear() {
 public void setExpiryyear(int expiryyear) {
 	this.expiryyear = expiryyear;
 }
-public User getUser() {
-	return user;
+public String getUsername() {
+	return username;
 }
-public void setUser(User user) {
-	this.user = user;
+public void setUsername(String username) {
+	this.username = username;
 }
+public static long getSerialversionuid() {
+	return serialVersionUID;
+}
+
 
 
 
