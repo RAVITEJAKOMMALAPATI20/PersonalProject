@@ -31,15 +31,20 @@ public class User implements Serializable{
 	@Id
 	@Column(name="username")
 	private String username;
+	
 	@Column(name="password")
 	private String password;
+	
 	@Id
 	@Column(name="email")
 	private String email;
+	
 	@Column(name="enable")
 	private boolean enable;
+	
 	@Column(name="usertype")
 	private boolean usertype;
+	
 	@Column(name="details")
 	@Convert(converter = JpaConverterJson.class)
 	private UserDetails details;

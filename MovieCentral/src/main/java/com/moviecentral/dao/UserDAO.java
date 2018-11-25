@@ -32,7 +32,9 @@ public class UserDAO {
 		try {
 		entityManager.persist(user);
 		}catch(DataIntegrityViolationException dataIntegrityViolationException) {
+
 			throw new MovieCentralRepositoryException("Username or password is not available.");
+
 		}
 		
 	}
