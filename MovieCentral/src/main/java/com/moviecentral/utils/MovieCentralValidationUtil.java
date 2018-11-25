@@ -21,8 +21,7 @@ public class MovieCentralValidationUtil {
 		if(subscription==null||subscription.getUsername()==null||
 				subscription.getUsername()==""||
 				subscription.getStartdate()==null||
-				subscription.getEnddate()==null||
-				subscription.getSubscriptionid()==0) {
+				subscription.getEnddate()==null) {
 			throw new MovieCentralValidationException("User Subscription details provided are not valid");
 		}
 		

@@ -46,9 +46,10 @@ public class SubscriptionService {
 		return resUserSubscription;
 	}
 
-	public UserSubscription deleteSubscriptionService(UserSubscription subscription) {
+	public UserSubscription dropSubscriptionService(UserSubscription subscription) {
 		subscription.setDropsubscription(true);
-		UserSubscription resUserSubscription=subscriptionDAO.deleteSubscriptionDao(subscription);
+		subscription.setAutoreneval(false);
+		UserSubscription resUserSubscription=subscriptionDAO.dropSubscriptionDao(subscription);
 		return resUserSubscription;
 		
 	}

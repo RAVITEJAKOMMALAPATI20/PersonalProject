@@ -36,13 +36,11 @@ public class SubscriptionDAO {
 	}
 	
 	public UserSubscription updateSubscriptionDao(UserSubscription subscription) {
-
-		
 		UserSubscription resUserSubscription=entityManager.merge(subscription);
 		return resUserSubscription;
 	}
 
-	public UserSubscription deleteSubscriptionDao(UserSubscription subscription) {
+	public UserSubscription dropSubscriptionDao(UserSubscription subscription) {
 		UserSubscription resUserSubscription=entityManager.merge(subscription);
 		return resUserSubscription;
 	}

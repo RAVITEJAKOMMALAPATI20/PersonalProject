@@ -62,6 +62,15 @@ public class UserSubscription implements Serializable {
 	@Column(name="dropsubscription")
 	private boolean dropsubscription;
 	
+	@Column(name="totalcost")
+	private String totalcost;
+	
+	public String getTotalcost() {
+		return totalcost;
+	}
+	public void setTotalcost(String totalcost) {
+		this.totalcost = totalcost;
+	}
 	@Column(name="payment")
 	private String payment;
 	

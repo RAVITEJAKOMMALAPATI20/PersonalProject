@@ -3,6 +3,7 @@
  */
 package com.moviecentral.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,10 @@ public class SubscriptionController {
 
 	@Autowired SubscriptionService subscriptionService;
 	
-	@PostMapping("/savesubscription")
+	@PostMapping("/startsubscription")
 	public UserSubscription saveSubscription(@RequestBody UserSubscription subscription,WebRequest request) {
 		System.out.println(subscription.getUsername());
-		subscription.setStartdate(null);
+		subscription.setStartdate(new Date());
 		UserSubscription resUserSubscription=subscriptionService.saveSubscriptionService(subscription);
 		return resUserSubscription;
 		
@@ -41,10 +42,10 @@ public class SubscriptionController {
 		return ressubscription;
 	}
 
-	@PostMapping("/deletesubscription")
-	public UserSubscription deleteSubscription(@RequestBody UserSubscription subscription,WebRequest request) {
+	@PostMapping("/dropsubscription")
+	public UserSubscription dropSubscription(@RequestBody UserSubscription subscription,WebRequest request) {
 
-		UserSubscription resUserSubscription=subscriptionService.deleteSubscriptionService(subscription);
+		UserSubscription resUserSubscription=subscriptionService.dropSubscriptionService(subscription);
 		return resUserSubscription;
 	}
 	
