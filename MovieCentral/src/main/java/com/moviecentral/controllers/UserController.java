@@ -5,7 +5,6 @@ package com.moviecentral.controllers;
 
 import java.util.Calendar;
 import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.ui.Model;
@@ -16,19 +15,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
-
 import com.moviecentral.event.OnRegistrationSuccessEvent;
 import com.moviecentral.exceptions.MovieCentralRepositoryException;
 import com.moviecentral.exceptions.MovieCentralValidationException;
 import com.moviecentral.pojos.User;
 import com.moviecentral.pojos.VerificationToken;
 import com.moviecentral.services.UserService;
-import com.moviecentral.utils.MovieCentralUtil;
+
 
 /**
  * @author ravitejakommalapati
  *
  */
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -78,6 +77,6 @@ public class UserController {
 		
 		user.setEnable(true);
 		userService.enableRegisteredUser(user);
-		return null;
+		return "You have been activated";
 	}
 }
