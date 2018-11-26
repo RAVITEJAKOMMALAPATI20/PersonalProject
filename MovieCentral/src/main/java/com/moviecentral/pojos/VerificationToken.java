@@ -4,6 +4,7 @@
 package com.moviecentral.pojos;
 
 import java.util.Date;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Calendar;
 
@@ -38,7 +39,11 @@ import javax.persistence.TemporalType;
 	query = "select s from VerificationToken s where s.token = :token"
 	)
 })
-public class VerificationToken {
+public class VerificationToken implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static final int EXPIRATION = 60 * 24;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

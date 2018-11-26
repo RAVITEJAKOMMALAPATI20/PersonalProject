@@ -3,6 +3,7 @@
  */
 package com.moviecentral.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,15 +26,16 @@ public class MovieRatingService {
 	@Autowired
 	Movie movie;
 	
-	public Movie saveratingService(MovieRating movieRating) {
-		movie.setMovieid(movieRating.getMovieid());
-		Movie resmovie = movieRatingDAO.saveratingDao(movieRating, movie);
+	public MovieRating saveratingService(MovieRating movieRating) {
+		//movie.setMovieid(movieRating.getMovieid());
+		movieRating.setRatedon(new Date());
+		MovieRating resmovie = movieRatingDAO.saveratingDao(movieRating);
 		return resmovie;
 	}
 	
 	
-	public List<Movie> getTopTenMoviesService() {
-		List<Movie> topMoviesByRating=movieRatingDAO.getTopTenMoviesDao();
+	public List<Object> getTopTenMoviesService() {
+		List<Object> topMoviesByRating=movieRatingDAO.getTopTenMoviesDao();
 		return topMoviesByRating;
 	}
 

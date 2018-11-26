@@ -44,7 +44,7 @@ public class UserDAO {
 		User regestered =null;
 		try {
 			regestered=entityManager.find(User.class, user.getUsername());
-		    entityManager.flush();
+		    //entityManager.flush();
 		
 		}catch(Exception ex) {
 			throw new MovieCentralRepositoryException(ex.getMessage());

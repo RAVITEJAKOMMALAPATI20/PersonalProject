@@ -3,6 +3,7 @@
  */
 package com.moviecentral.pojos;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -28,7 +29,13 @@ import org.springframework.stereotype.Component;
 	query = "select M from Movie M"
 	)
 })
-public class Movie {
+public class Movie implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8216953233461707887L;
+	
 	@Id
 	@Column(name="movieid")
 	private String movieid;

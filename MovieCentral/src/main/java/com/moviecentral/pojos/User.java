@@ -4,12 +4,18 @@
 package com.moviecentral.pojos;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 /**
@@ -18,7 +24,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="people")
+@Table(name="users")
 public class User implements Serializable{
 	
 	/**
@@ -47,6 +53,17 @@ public class User implements Serializable{
 	@Column(name="phonenumber")
 	private String phonenumber;
 	
+
+	
+	@OneToOne(mappedBy = "user",cascade=CascadeType.ALL)
+    private VerificationToken library;
+	
+	public VerificationToken getLibrary() {
+		return library;
+	}
+	public void setLibrary(VerificationToken library) {
+		this.library = library;
+	}
 	
 	
 	public String getUsername() {
@@ -103,9 +120,7 @@ public class User implements Serializable{
 	public void setPhonenumber(String phonenumber) {
 		this.phonenumber = phonenumber;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+	
 	
 	
 	
