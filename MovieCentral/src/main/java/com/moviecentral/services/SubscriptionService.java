@@ -35,6 +35,8 @@ public class SubscriptionService {
 		subscription.setEnddate(date);
 		subscription.setSubscriptionstatus(true);
 		movieCentralValidationUtil.validateUserSubscription(subscription);
+		
+		
 		UserSubscription resUserSubscription=subscriptionDAO.saveSubscriptionDao(subscription);
 		return resUserSubscription;
 		

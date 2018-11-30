@@ -5,72 +5,58 @@ package com.moviecentral.pojos;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.stereotype.Component;
+
 /**
  * @author ravitejakommalapati
  *
  */
-@Entity
-@Component
-@Table(name="movies")
-@NamedQueries({
-	@NamedQuery(
-	name = "Movie.getAllMovies",
-	query = "select M from Movie M"
-	)
-})
-@Document(indexName="movies" ,type="movies", shards=1)
-public class Movie implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8216953233461707887L;
-	
+
+/**
+ * @author ravitejakommalapati
+ *
+ */
+@Document(indexName="movieelastic" ,type="movieelastic", shards=1)
+public class MovieElastic  {
+		
 	@Id
-	@Column(name="movieid")
+	private String id;
+	
 	private String movieid;
-	@Column(name="title")
 	private String title;
-	@Column(name="genre")
 	private String genre;
-	@Column(name="releasedate")
 	private String releasedate;
-	@Column(name="studio")
 	private String studio;
-	@Column(name="synopsis" ,length=1000)
 	private String synopsis;
-	@Column(name="image")
 	private String image;
-	@Column(name="movieurl")
 	private String movieurl;
-	@Column(name="actors")
 	private String actors;
-	@Column(name="director")
 	private String director;
-	@Column(name="country")
 	private String country;
-	@Column(name="rating")
 	private String rating;
-	@Column(name="availability")
 	private String availability;
-	@Column(name="price")
 	private String price;
 	
 	
-	@Column(name="registereddate")
-	@Temporal(TemporalType.TIMESTAMP)
+	
+	
+	public String getMovieid() {
+		return movieid;
+	}
+	public void setMovieid(String movieid) {
+		this.movieid = movieid;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	private Date registereddate;
 	
 	public Date getRegistereddate() {
@@ -79,12 +65,7 @@ public class Movie implements Serializable {
 	public void setRegistereddate(Date registereddate) {
 		this.registereddate = registereddate;
 	}
-	public String getMovieid() {
-		return movieid;
-	}
-	public void setMovieid(String movieid) {
-		this.movieid = movieid;
-	}
+	
 	public String getTitle() {
 		return title;
 	}

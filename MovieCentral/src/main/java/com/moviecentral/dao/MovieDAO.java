@@ -9,10 +9,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
 import com.moviecentral.exceptions.MovieCentralRepositoryException;
 import com.moviecentral.pojos.Movie;
 
@@ -30,11 +29,12 @@ public class MovieDAO {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	
 
+	
 	public Movie saveMovieDAO(Movie movie) {
 		
 		entityManager.persist(movie);
+		
 		entityManager.flush();
 		
 		
