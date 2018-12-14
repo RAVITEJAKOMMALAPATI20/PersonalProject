@@ -4,6 +4,7 @@
 package com.moviecentral.controllers;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -57,17 +58,19 @@ public class UserController {
 	    Locale locale=request.getLocale();
 	    eventPublisher.publishEvent(new OnRegistrationSuccessEvent(registered_user,locale,appUrl));
 	    request.setAttribute("user", registered_user, WebRequest.SCOPE_SESSION);
+	    if(registered_user!=null && registered_user.getUsername()!=null&&!registered_user.isEnable()) {
+			throw new MovieCentralValidationException("Please Confirm your Registration");
+		}
 	    return registered_user;
 		
 	}	
 	
-	@CrossOrigin(origins = "http://localhost:3000")
 	@PostMapping("/signin")
 	public User userSignin(@RequestBody User user,WebRequest request) {
 	
 		User registered_user=userService.loginUserService(user);
 	    //request.setAttribute("user", registered_user, WebRequest.SCOPE_SESSION);
-
+System.out.println();
 	   
 	    return registered_user;
 		
@@ -94,5 +97,18 @@ public class UserController {
 		user.setEnable(true);
 		userService.enableRegisteredUser(user);
 		return "You have been activated";
+	}
+	
+	@GetMapping("/getallusers")
+	public List<User> getAllUsers() {
+		
+		
+		
+		return userService.getAllUsersService();
+	}
+	@PostMapping("/updateuser")
+	public User updateUser(@RequestBody User user) {
+		
+		return userService.updateuserService(user);
 	}
 }

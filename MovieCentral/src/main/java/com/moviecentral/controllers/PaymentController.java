@@ -44,24 +44,24 @@ public class PaymentController {
 	@Autowired
 	private PaymentService paymentService;
 	
-	@CrossOrigin(origins = "http://localhost:3000")
+	
 	@PostMapping("/savepayment")
 	public Payment savepaymentdetails(@RequestBody Payment payment,WebRequest request)  {
 		Payment respayment = paymentService.savepaymentdetailsService(payment);
 		return respayment;
 	}
-	@CrossOrigin(origins = "http://localhost:3000") 
+	
 	@PostMapping("/updatepayment")
 	public Payment updatepaymentdetails(@RequestBody Payment payment,WebRequest request) {
 		Payment respayment =paymentService.updatepaymentdetailsService(payment);
 		return respayment;
 	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	
 	@PostMapping("/deletepayment")
 	public void deletepaymentdetails(@RequestBody Payment payment,WebRequest request) {
 		paymentService.deletepaymentdetailsService(payment);
 	}
-	@CrossOrigin(origins = "http://localhost:3000")
+	
 	@GetMapping("/getpayments")
 	public List<Payment> getAllpaymentdetails(@RequestParam("username") String username,WebRequest request) {
 		List<Payment> respaymentsList=paymentService.getAllpaymentdetailsService(username);

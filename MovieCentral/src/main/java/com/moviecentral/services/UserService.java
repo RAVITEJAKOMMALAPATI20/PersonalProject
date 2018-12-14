@@ -3,6 +3,8 @@
  */
 package com.moviecentral.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +56,7 @@ public class UserService {
 		
 		User resuser =userDao.signinUserDao(user);
 		
+		
 		return resuser;
 	}
 	
@@ -65,11 +68,15 @@ public User loginUserService(User user)  {
 		}
 		User regestered = userDao.loginUserDao(user);
 		
-		boolean encodedpassword = movieCentralUtil.decodePassword(user.getPassword(), regestered.getPassword());
+		//boolean encodedpassword = movieCentralUtil.decodePassword(user.getPassword(), regestered.getPassword());
 		
-		if(!encodedpassword) {
-			return regestered;
-		}
+		//if(!encodedpassword) {
+			//return regestered;
+		//}
+		System.out.println("IS Enabled"+regestered.isEnable());
+		/*if(regestered!=null && regestered.getUsername()!=null&&!regestered.isEnable()) {
+			throw new MovieCentralValidationException("Please Confirm your Registration");
+		}*/
 		
 		return regestered;
 	}
@@ -84,5 +91,20 @@ public User loginUserService(User user)  {
 	
 	public void enableRegisteredUser(User user) {
 		userDao.save(user);
+	}
+    
+	
+	public List<User> getAllUsersService() {
+		
+		
+		
+		return userDao.getAllUsersDao();
+	}
+    
+	public User updateuserService(User user) {
+		
+		
+		
+		return userDao.updateuserDao(user);
 	}
 }

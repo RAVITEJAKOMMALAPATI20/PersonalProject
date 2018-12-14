@@ -60,7 +60,7 @@ public class VerificationToken implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date expiryDate;
 	
-	@OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+	@OneToOne(targetEntity = User.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "username", nullable = false)
 	private User user;
 	public VerificationToken() {

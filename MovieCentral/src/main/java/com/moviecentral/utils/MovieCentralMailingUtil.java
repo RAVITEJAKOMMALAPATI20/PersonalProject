@@ -35,7 +35,8 @@ public class MovieCentralMailingUtil {
 	   SimpleMailMessage email = new SimpleMailMessage(); 
 	   email.setTo(toEmailAddress); 
 	   email.setSubject(subject); 
-       email.setText(  " rn" + "http://localhost:8080"+token);
+	  
+       email.setText(  " rn" + "Please Click the following link for Confirmation--"+"http://ec2-35-166-105-174.us-west-2.compute.amazonaws.com:8080"+token);
        mailSender.send(email);
 	   
    }

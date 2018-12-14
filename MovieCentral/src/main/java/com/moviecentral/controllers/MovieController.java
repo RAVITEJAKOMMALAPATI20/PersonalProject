@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
@@ -68,13 +69,13 @@ public class MovieController {
 	
 	
 	@GetMapping("/getmoviescontains")
-	public List<MovieElastic> getmoviescontains(String text) {
+	public List<MovieElastic> getmoviescontains(@RequestParam("text")String text) {
 		List<MovieElastic> resmovies=movieElasticService.getmoviescontains(text);
 		return resmovies;
 	}
 	
 	@GetMapping("/getmovieswithgenre")
-	public List<MovieElastic> getAllwithGenre(String text) {
+	public List<MovieElastic> getAllwithGenre(@RequestParam("text")String text) {
 		List<MovieElastic> resmovies=movieElasticService.getAllwithGenre(text);
 		return resmovies;
 	}

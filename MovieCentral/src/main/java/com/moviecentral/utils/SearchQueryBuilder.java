@@ -57,7 +57,6 @@ public List<MovieElastic> getAllwithGenre(String text){
 								.lenient(true)
 								.field("genre")
 								);
-		
 		NativeSearchQuery build =new NativeSearchQueryBuilder().withQuery(query).build();
 		List<MovieElastic> res= elasticsearchTemplate.queryForList(build, MovieElastic.class);
 		return res;

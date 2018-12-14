@@ -33,6 +33,14 @@ public class MovieRatingService {
 		return resmovie;
 	}
 	
+	public MovieRating getratingService(MovieRating movieRating) {
+		MovieRating resmovie = movieRatingDAO.getratingDao(movieRating);
+		return resmovie;
+	}
+	public List<MovieRating> getallcommentsService(MovieRating movieRating) {
+	List<MovieRating> resmovie = movieRatingDAO.getallcommentDao(movieRating);
+		return resmovie;
+	}
 	
 	public List<Object> getTopTenMoviesService() {
 		List<Object> topMoviesByRating=movieRatingDAO.getTopTenMoviesDao();

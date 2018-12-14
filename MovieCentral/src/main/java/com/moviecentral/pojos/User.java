@@ -11,6 +11,8 @@ import javax.persistence.Column;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,6 +27,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="users")
+@NamedQueries({
+	@NamedQuery(
+	name = "User.getAllUsers",
+	query = "select M from User M"
+	)
+})
 public class User implements Serializable{
 	
 	/**
@@ -52,19 +60,6 @@ public class User implements Serializable{
 	private String middlename;
 	@Column(name="phonenumber")
 	private String phonenumber;
-	
-
-	
-	@OneToOne(mappedBy = "user",cascade=CascadeType.ALL)
-    private VerificationToken library;
-	
-	public VerificationToken getLibrary() {
-		return library;
-	}
-	public void setLibrary(VerificationToken library) {
-		this.library = library;
-	}
-	
 	
 	public String getUsername() {
 		return username;

@@ -36,6 +36,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 	)
 	,
 	@NamedQuery(
+			name = "MovieRating.getallcomments",
+			query = "select U from MovieRating U where U.movie = :movie"
+			)
+			,
+	@NamedQuery(
 			name = "MovieRating.getTopTenMovies",
 			query = "select  U.movie, sum(U.rating)/count(U.user),count(U.user) from MovieRating U\n" + 
 					" where U.ratedon > :startdate  and U.ratedon < :enddate  \n" + 
@@ -51,12 +56,12 @@ public class MovieRating implements Serializable{
 	private static final long serialVersionUID = 2079781906167547762L;
 
 	@Id
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="movieid")
 	private Movie movie;
 	
 	@Id
-	@ManyToOne(fetch=FetchType.LAZY,cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinColumn(name="username")
 	private User user;
 	
